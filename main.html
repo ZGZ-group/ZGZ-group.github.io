@@ -15,7 +15,7 @@
       height: 34px;
 
     }
-    
+
     .profile-cover {
       height: 100px;
       background-color: black;
@@ -31,27 +31,33 @@
       text-align: center;
       line-height: 60px;
     }
+
     .el-card__body {
       margin: 0px;
       padding: 0px;
     }
+
     .profile-header-avatar {
-      
-    display: inline-block;
-    position: absolute;
-    top: -87px;
+
+      display: inline-block;
+      position: absolute;
+      top: -87px;
 
     }
+
     .profile-header-content-text {
       margin-left: 172px;
     }
+
     .profile-header-avatar__img {
       width: 160px;
       height: 160px;
     }
+
     .profile-header-content {
       position: relative;
     }
+
     .follow-part {
       display: inline-block;
       margin-left: 300px;
@@ -101,19 +107,21 @@
           </el-col>
           <el-col :span="2" :offset="8">
             <el-dropdown>
-              <img class="el-dropdown-link" style="width:60px;height:60px" class="profile-header-avatar__img" src="https://i0.hdslb.com/bfs/face/f07c74fe2a020b33ab1035fea6d3338b6a6e6749.jpg" alt="">
-                <el-dropdown-menu slot="dropdown">
+              <div class="el-dropdown-link"
+                style="cursor: pointer;display:inline-block;font-size:60px;width:60px;height:60px"
+                class="profile-header-avatar__img" alt="">头</div>
+              <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>个人主页</el-dropdown-item>
                 <el-dropdown-item>修改信息</el-dropdown-item>
                 <el-dropdown-item>退出登录</el-dropdown-item>
-                
+
               </el-dropdown-menu>
             </el-dropdown>
           </el-col>
-          
+
 
         </el-row>
-        
+
       </el-header>
       <el-main>
 
@@ -125,29 +133,76 @@
             <div class="profile-header-main">
               <div class="profile-header-content">
                 <div class="profile-header-avatar">
-                  <img class="profile-header-avatar__img" src="https://i0.hdslb.com/bfs/face/f07c74fe2a020b33ab1035fea6d3338b6a6e6749.jpg" alt="">
+                  <div class="profile-header-avatar__img" style="font-size: 159px;
+                  display: inline-block;
+                  color: white;
+                  background: cornflowerblue;" class="profile-header-avatar__img" alt="">头</div>
                 </div>
                 <div class="profile-header-content-text">
-                <div class="profile-header-content-head">
-                  <h1 class="profile-header-title">
-                    <span class="profile-header-name">英雄联盟赛事</span>
-                    <el-button size="mini">关注</el-button>
-                    <el-button size="mini">拉黑</el-button>
+                  <div class="profile-header-content-head">
+                    <h1 class="profile-header-title">
+                      <span class="profile-header-name">英雄联盟赛事</span>
+                      <el-button size="mini">关注</el-button>
+                      <el-button size="mini">拉黑</el-button>
 
-                    <span class="follow-part">248 关注/3265 被关注</span>
-                    
-                  </h1>
+                      <span class="follow-part">248 关注/3265 被关注</span>
 
-                </div>
-                <div class="profile-header-content-body">
+                    </h1>
+
+                  </div>
+                  <div class="profile-header-content-body">
                     <span class=" profile-header-signature">哔哩哔哩英雄联盟赛事官方帐号，直播LPL、S9、季中赛、洲际赛等大型赛事。</span></h1>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
 
         </el-card>
+        <el-row style="text-align:center">
+          <el-button size="mini" @click="dialogFormVisible = true" type="primary">登陆</el-button>
+          <el-dialog title="登陆" :visible.sync="dialogFormVisible">
+            <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+              <el-form-item label="用户名">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="密码">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="验证码">
+                <el-input></el-input>
+                <el-button>验证</el-button>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary">登录</el-button>
+                <el-button>注册</el-button>
+              </el-form-item>
+            </el-form>  
+          </el-dialog>
+
+          <el-button size="mini" @click="dialogFormVisible2 = true"  type="primary">注册</el-button>
+          <el-dialog title="登陆" :visible.sync="dialogFormVisible2">
+            <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+              <el-form-item label="用户名">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="密码">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="验证码">
+                <el-input></el-input>
+                <el-button>验证</el-button>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary">注册</el-button>
+                <el-button>登录</el-button>
+              </el-form-item>
+            </el-form>  
+          </el-dialog>
+        </el-row>
 
 
 
@@ -162,7 +217,22 @@
   new Vue({
     el: '#app',
     data: function () {
-      return { visible: false }
+      return { 
+        visible: false ,
+        dialogFormVisible: false,
+        dialogFormVisible2:false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'       
+        }
     }
   })
 </script>
